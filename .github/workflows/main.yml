@@ -59,7 +59,7 @@ jobs:
           JAR_FILE=$(ls *.jar | head -n 1)
 
           az webapp deploy \
-            --resource-group $RESOURCE_GROUP \
-            --name $WEBAPP_NAME \
+            --resource-group ${{ vars.RESOURCE_GROUP }} \
+            --name ${{ vars.WEBAPP_NAME }} \
             --src-path $JAR_FILE \
             --type jar
