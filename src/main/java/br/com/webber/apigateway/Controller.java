@@ -9,10 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class Controller {
 
-    private static final String template = "Hello, %s!";
+    private final FunctionClient functionClient;
 
-    @GetMapping("/hello")
-    public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return String.format(template, name);
+    public Controller(FunctionClient functionClient) {
+        this.functionClient = functionClient;
+    }
+
+    @GetMapping("/health")
+    public String health() {
+        return functionClient.callHealth();
     }
 }
